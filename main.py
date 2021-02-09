@@ -1,44 +1,52 @@
 import turtle as t
 import time
-from snake import Snake
-from food import Food
+from ball import  Ball
+from paddle import Paddle
 from scoreboard import Scoreboard
-from gameover import GameOver
 
 screen = t.Screen()
-screen.setup(width=500, height=400, )
+screen.setup(width=800, height=800 )
 screen.bgcolor("black")
 
-snake = Snake()
-food = Food()
-score = Scoreboard()
+paddle1 = Paddle()
+ball = Ball()
 
 screen.listen()
-screen.onkey(snake.up, "w")
-screen.onkey(snake.down, "s")
-screen.onkey(snake.right, "d")
-screen.onkey(snake.left, "a")
+screen.onkey(paddle1.up, "w")
+screen.onkey(paddle1.down, "s")
+
+scoreboard = Scoreboard()
 
 gameOn = True
 while gameOn:
     screen.update()
-    time.sleep(0.5)
-    snake.move()
+    time.sleep(0.1)
+    paddle1.move()
+    ball.move()
 
-    if snake.head.distance(food) < 15:
-        snake.extend()
-        food.refresh()
-        score.increase_score()
-        score.refresh_score()
+    if paddle1.distance(ball) < 30:
+        ball.change_direction()
 
-    if snake.head.xcor() > 230 or snake.head.xcor() < -230 or snake.head.ycor() > 180 or snake.head.ycor() < -180:
-        overgame = GameOver()
-        gameOn = False
+    if paddle1.ycor() > 360:
+        paddle1.down()
+    elif paddle1.ycor() < -360:
+        paddle1.up()
 
-    for seg in snake.segments[1:]:
-        if snake.head.distance(seg) < 15:
-            overgame = GameOver()
-            gameOn = False
+    if ball.
+#     if snake.head.distance(food) < 15:
+#         snake.extend()
+#         food.refresh()
+#         score.increase_score()
+#         score.refresh_score()
+#
+#     if snake.head.xcor() > 230 or snake.head.xcor() < -230 or snake.head.ycor() > 180 or snake.head.ycor() < -180:
+#         overgame = GameOver()
+#         gameOn = False
+#
+#     for seg in snake.segments[1:]:
+#         if snake.head.distance(seg) < 15:
+#             overgame = GameOver()
+#             gameOn = False
 
 
 screen.exitonclick()
