@@ -1,6 +1,6 @@
 import turtle as t
 
-START = [(0, 0), (-20, 0), (-40,0), (-60,0)]
+START = [(0, 0), (-20, 0), (-40,0)]
 MOVE_DIST = 20
 
 class Snake:
@@ -37,14 +37,4 @@ class Snake:
 
     def right(self):
         self.head.setheading(0)
-    # def terin():
-    #     if screen.onkey("w") == :
-    #         return tur.forward(20)
-    #     elif screen.onkeypress() == "s":
-    #         return tur.backward(20)
-    #     elif screen.onkeypress() == "d":
-    #         return tur.right(20)
-    #     elif screen.onkeypress() == "a":
-    #         return tur.left(20)
-    #     else:
-    #         return tur.forward(20)
+

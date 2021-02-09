@@ -1,14 +1,17 @@
 import turtle as t
 import time
 from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
+from gameover import GameOver
 
 screen = t.Screen()
 screen.setup(width=500, height=400, )
 screen.bgcolor("black")
 
 snake = Snake()
-
-
+food = Food()
+score = Scoreboard()
 
 screen.listen()
 screen.onkey(snake.up, "w")
@@ -22,29 +25,14 @@ while gameOn:
     time.sleep(0.5)
     snake.move()
 
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        score.increase_score()
+        score.refresh_score()
 
-
-
-
-
-
-# for _ in start_shape:
-#     a = t.Turtle("square")
-#     a.color("white")
-#     a.goto(_)
-#     segments.append(a)
-#
-# new_shape=[]
-#
-# for _ in range(len(start_shape)):
-#     tup = start_shape[-_-1][0], start_shape[-_-1][1] + 20*_U
-#     new_shape.append(tup)
-#
-# for _ in new_shape:
-#     a = t.Turtle("square")
-#     a.color("white")
-#     a.goto(_)
-#     segments.append(a)
+    if snake.head.xcor() > 230 or snake.head.xcor() < -230 or snake.head.ycor() > 180 or snake.head.ycor() < -180:
+        overgame = GameOver()
+        gameOn = False
 
 
 screen.exitonclick()
