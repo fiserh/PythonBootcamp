@@ -10,12 +10,11 @@ screen.bgcolor("black")
 
 paddle1 = Paddle()
 ball = Ball()
+score = Scoreboard()
 
 screen.listen()
 screen.onkey(paddle1.up, "w")
 screen.onkey(paddle1.down, "s")
-
-scoreboard = Scoreboard()
 
 gameOn = True
 while gameOn:
@@ -26,27 +25,22 @@ while gameOn:
 
     if paddle1.distance(ball) < 30:
         ball.change_direction()
+        score.increase_score()
+        score.refresh_score()
 
     if paddle1.ycor() > 360:
         paddle1.down()
     elif paddle1.ycor() < -360:
         paddle1.up()
 
-    if ball.
-#     if snake.head.distance(food) < 15:
-#         snake.extend()
-#         food.refresh()
-#         score.increase_score()
-#         score.refresh_score()
-#
-#     if snake.head.xcor() > 230 or snake.head.xcor() < -230 or snake.head.ycor() > 180 or snake.head.ycor() < -180:
-#         overgame = GameOver()
-#         gameOn = False
-#
-#     for seg in snake.segments[1:]:
-#         if snake.head.distance(seg) < 15:
-#             overgame = GameOver()
-#             gameOn = False
+    if ball.ycor() > 360 or ball.ycor() < -360:
+        ball.bounce()
+
+    if ball.xcor() < - 360:
+        ball.change_direction()
+
+    if ball.xcor() > 380:
+        ball.refresh()
 
 
 screen.exitonclick()

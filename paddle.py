@@ -11,6 +11,7 @@ class Paddle(Turtle):
         self.setheading(90)
         self.shape("square")
         self.color("white")
+        self.speed("fastest")
         self.goto(380, 0)
         self.speed("fast")
         self.direction = 0

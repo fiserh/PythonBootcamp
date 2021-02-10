@@ -9,13 +9,11 @@ class Ball(Turtle):
         super().__init__()
         self.penup()
         self.shapesize(stretch_len=0.5, stretch_wid=0.5)
-        self.setheading(45)
         self.shape("circle")
         self.color("white")
-        self.xcor = random.randint(-300,300)
-        self.ycor = random.randint(-300, 300)
-        self.goto(self.xcor, self.ycor)
+        self.speed("fastest")
         self.direction = 0
+        self.refresh()
 
     def move(self):
         if self.direction == 0:
@@ -28,3 +26,14 @@ class Ball(Turtle):
             self.direction = 1
         elif self.direction == 1:
             self.direction =0
+
+    def bounce(self):
+        self.setheading(self.heading()*-1)
+
+    def refresh(self):
+        self.clear()
+        self.setheading(random.randint(-60,60))
+        self.x_cor = random.randint(-300,300)
+        self.y_cor = random.randint(-300, 300)
+        self.goto(self.x_cor, self.y_cor)
+
