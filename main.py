@@ -1,15 +1,20 @@
-import turtle as t
-import random
+import time
+from turtle import Screen
+from player import Player
+from car_manager import CarManager
+from scoreboard import Scoreboard
 
-tim = t.Turtle()
-colours = ["CornflowerBlue", "DarkOrchid", "IndianRed", "DeepSkyBlue", "LightSeaGreen", "wheat", "SlateGray", "SeaGreen"]
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.tracer(0)
 
-def draw_shape(num_sides):
-    angle = 360 / num_sides
-    for _ in range(num_sides):
-        tim.forward(100)
-        tim.right(angle)
+screen.listen()
+screen.onkey(paddle1.up, "w")
+screen.onkey(paddle1.down, "s")
 
-for shape_side_n in range(11, 20):
-    tim.color(random.choice(colours))
-    draw_shape(shape_side_n)
+game_is_on = True
+while game_is_on:
+    time.sleep(0.1)
+    screen.update()
+
+screen.exitonclick()
