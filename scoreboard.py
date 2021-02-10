@@ -7,10 +7,10 @@ class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
         self.score = 0
-        self.color("White")
+        self.color("white")
         self.penup()
         self.speed("fastest")
-        self.goto(0, 360)
+        self.goto(0, 260)
         self.hideturtle()
         self.refresh_score()
 
@@ -19,4 +19,9 @@ class Scoreboard(Turtle):
 
     def refresh_score(self):
         self.clear()
-        self.write(f"Score: {self.score}", align="center", font=("Arial", 24, "normal"))
+        self.write(f"Score: {self.score}", align="center", font=FONT)
+
+    def game_over(self):
+        self.clear()
+        self.write(f"Game Over", align="center", font=FONT)
+        self.goto(0, 0)

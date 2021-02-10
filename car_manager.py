@@ -10,14 +10,13 @@ class CarManager(Turtle):
     def __init__(self):
         super().__init__()
         self.penup()
-        self.shapesize(stretch_len=1, stretch_wid=3)
-        self.setheading(90)
+        self.shapesize(stretch_len=3, stretch_wid=1)
+        self.setheading(180)
         self.shape("square")
         self.color(random.choice(COLORS))
         self.speed("fastest")
-        self.goto(random.randint(-300,300), 0)
-        self.speed("fast")
-         
+        self.goto(300,random.randint(-260,260))
+
     def move(self):
-            self.forward(20)
+            self.forward(MOVE_INCREMENT)
     
