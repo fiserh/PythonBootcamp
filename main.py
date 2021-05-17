@@ -53,9 +53,8 @@ print(df2[2:5]['title'].values)
 # STEP 3: Use https://www.twilio.com
 # Send a separate message with the percentage change and each article's title and description to your phone number.
 
-account_sid = 'ACe49669c3f9118298c52fb4baf8d3956d'
-auth_token = '42d0f0f45241df0f90ec972996d0f134'
-client = Client(account_sid, auth_token)
+
+client = Client(apikey.account_sid, apikey.auth_token)
 
 message = client.messages.create(
     from_='whatsapp:+14155238886',
