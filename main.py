@@ -4,11 +4,10 @@ pd.options.mode.chained_assignment = None
 import json
 import numpy as np
 import math
+import apikey
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
-APIKEY_ALFAVANTAGE = "7BU6ISB3W9WB3WXZ"
-APIKEY_NEWS = 'd153188a103b44238cbf033985e9ac2e'
 
 def request_builderAV(function, symbol, key):
     # return f'https://www.alphavantage.co/query?function={function}&symbol={symbol}&interval={interval}&apikey={apikey}
@@ -20,7 +19,7 @@ def request_builder_news(date, topic, key):
     return request
 
 
-response = requests.get(request_builderAV("TIME_SERIES_DAILY", STOCK, APIKEY_ALFAVANTAGE))
+response = requests.get(request_builderAV("TIME_SERIES_DAILY", STOCK, apikey.APIKEY_ALFAVANTAGE))
 
 df = pd.DataFrame(json.loads(response.content)['Time Series (Daily)'])
 count_a_vals = df.T["1. open"].values
@@ -39,7 +38,7 @@ df['diff'].iloc[:-1] = (count_a_vals[:-1] - count_b_vals[1:])/count_b_vals[:-1]*
 
 df = df[df['diff'] > 2]
 df.axes[0].values[0]
-response = requests.get(request_builder_news(df.axes[0].values[0], "TESLA", APIKEY_NEWS))
+response = requests.get(request_builder_news(df.axes[0].values[0], "TESLA", apikey.APIKEY_NEWS))
 print(response.content)
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
